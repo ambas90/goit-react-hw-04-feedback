@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 
+import { SectionUi } from './SectionStyles';
+
 const Section = ({ title, children }) => {
   return (
-    <div>
+    <SectionUi>
       <h1>{title}</h1>
       {children}
-    </div>
+    </SectionUi>
   );
 };
 

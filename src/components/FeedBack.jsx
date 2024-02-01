@@ -3,6 +3,7 @@ import Statistics from './Statistics';
 import FeedbackOptions from './FeedbackOptions';
 import Section from './Section';
 import Notification from './Notification';
+import { FeedbackWrapper, FeedbackContainer } from './FeedbackStyles';
 
 export default function FeedBack() {
   const [feedback, setFeedback] = useState({
@@ -32,26 +33,28 @@ export default function FeedBack() {
   };
 
   return (
-    <div>
-      <Section title="Please leave feedback">
-        <FeedbackOptions
-          options={['good', 'neutral', 'bad']}
-          onLeaveFeedback={handleFeedback}
-        />
-      </Section>
-      <Section title="Statistics">
-        {totalFeedback >= 1 ? (
-          <Statistics
-            good={feedback.good}
-            neutral={feedback.neutral}
-            bad={feedback.bad}
-            total={totalFeedback}
-            positivePercentage={feedbackPercentage}
+    <FeedbackContainer>
+      <FeedbackWrapper>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedback={handleFeedback}
           />
-        ) : (
-          <Notification message="There is no feedback" />
-        )}
-      </Section>
-    </div>
+        </Section>
+        <Section title="Statistics">
+          {totalFeedback >= 1 ? (
+            <Statistics
+              good={feedback.good}
+              neutral={feedback.neutral}
+              bad={feedback.bad}
+              total={totalFeedback}
+              positivePercentage={feedbackPercentage}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
+      </FeedbackWrapper>
+    </FeedbackContainer>
   );
 }
